@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Oswald&family=Roboto&family=Rubik:wght@500&display=swap");
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #85ffbd;
+        background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      div {
+        width: 500px;
+        height: 700px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 10px 10px 10px black;
+        border: 1px solid;
+        border-radius: 8px;
+      }
+      input,
+      textarea,
+      select,
+      button {
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.459);
+      }
+
+      input,
+      textarea,
+      select,
+      label,
+      button {
+        display: block;
+        margin: 20px;
+        border-radius: 10px;
+        resize: none;
+        font-family: "Rubik", sans-serif;
+      }
+      input,
+      select {
+        padding: 10px;
+      }
+      label {
+        margin-bottom: -20px;
+      }
+      button {
+        padding: 20px;
+        background-color: #85ffbd;
+        background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+      }
+      button:hover {
+        background: rgba(255, 255, 255, 0.06);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(7.9px);
+        -webkit-backdrop-filter: blur(7.9px);
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <form action="">
+        <label for="nome">Nome:</label>
+        <input type="text" name="" id="nome" placeholder="Escreva Seu Nome" />
+        <label for="e-mail">E-mail:</label>
+        <input
+          type="email"
+          name=""
+          id="e-mail"
+          placeholder="Escreva Seu E-mail"
+        />
+        <label for="cidade">Cidade:</label>
+        <input
+          type="text"
+          name=""
+          id="cidade"
+          placeholder="Escreva Sua Cidade"
+        />
+        <label for="estado">Estado:</label>
+        <select name="" id="estado">
+          <option value="" selected disabled>Selecione um Estado</option>
+          <option value="bahia">Bahia</option>
+          <option value="saopaulo">São Paulo</option>
+          <option value="rio">Rio de Janeiro</option>
+        </select>
+        <label for="texto">Mensagem:</label>
+        <textarea name="" id="texto" cols="30" rows="10"></textarea>
+        <button type="button" id="enviar">Enviar</button>
+      </form>
+    </div>
+    <script>
+      let btn = document.querySelector("#enviar");
+
+      btn.addEventListener("click", function () {
+        verificar();
+      });
+
+      function verificar() {
+        let array = ["nome", "e-mail", "cidade", "estado", "texto"];
+
+        for (let i = 0; i < array.length; i++) {
+          const campo = array[i];
+          let valor = document.getElementById(campo).value;
+
+          if (campo === "e-mail" && (valor === "") == false) {
+
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (regexEmail.test(valor) === false) {
+              alert("Email esperado example@example.com");
+              var valido = false;
+            }
+          }
+
+          if (valor === "") {
+           
+            alert(`Campo ${campo} está vazio`);
+            document.getElementById(campo).style.border = "2px solid red";
+            var valido = false;
+          }
+        }
+
+        if (valido != false) {
+          
+          for (let i = 0; i < array.length; i++) {
+          const campo = array[i];
+          let valor = document.getElementById(campo).value;
+          document.getElementById(campo).style.border = "1px solid";
+          }
+
+          return alert("Valido");
+          
+        }
+      }
+    </script>
+  </body>
+</html>
