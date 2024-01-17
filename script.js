@@ -6,9 +6,10 @@ btn.addEventListener("click", function () {
 
 function verificar() {
   let array = ["nome", "e-mail", "cidade", "estado", "texto"];
+  let valido = true;
 
-  for (let i = 0; i < array.length; i++) {
-    const campo = array[i];
+  for (const element of array) {
+    const campo = element;
     let valor = document.getElementById(campo).value;
 
     if (campo === "e-mail" && (valor === "") == false) {
@@ -16,21 +17,20 @@ function verificar() {
 
       if (regexEmail.test(valor) === false) {
         alert("Email esperado example@example.com");
-        var valido = false;
+        valido = false;
       }
     }
 
     if (valor === "") {
       alert(`Campo ${campo} está vazio`);
       document.getElementById(campo).style.border = "2px solid red";
-      var valido = false;
+      valido = false;
     }
   }
 
   if (valido != false) {
-    for (let i = 0; i < array.length; i++) {
-      const campo = array[i];
-      let valor = document.getElementById(campo).value;
+    for (const element of array) {
+      const campo = element;
       document.getElementById(campo).style.border = "1px solid";
     }
 
